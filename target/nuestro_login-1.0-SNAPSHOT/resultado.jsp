@@ -9,9 +9,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Resultado validación</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+        <h1>${mensaje}</h1>
+    
+    <% 
+        Boolean valido = (Boolean)request.getAttribute("esValido");
+        if(valido != null && valido) { 
+    %>
+        <p>Bienvenido, ${usuario}!</p>
+        <p>Has iniciado sesión correctamente.</p>
+    <% } else { %>
+        <p>Usuario o contraseña incorrectos.</p>
+        <a href="login.jsp">Volver a intentar</a>
+    <% } %>
+    
+    
+
     </body>
 </html>

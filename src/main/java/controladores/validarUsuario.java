@@ -10,9 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
 
@@ -37,32 +35,22 @@ public class validarUsuario extends HttpServlet {
         
         if("admin".equals(user) && "1234".equals(pass)) {
             esValido = true;
+            mensaje = "Registro exitoso";
+        }else{
+        mensaje = "Registro inválido";
         }
         
+        request.setAttribute("esValido", esValido);
+        request.setAttribute("mensaje", mensaje);
+        request.setAttribute("usuario", user);
         
-        response.setContentType("text/html;charset=UTF-8");
+        request.getRequestDispatcher("resultado.jsp").forward(request, response);
         
         
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Resultado de la Validación</title>");
-            out.println("</head>");
-            out.println("<body>");
-            
-            if(esValido) {
-                out.println("<h1>Registro Exitoso</h1>");
-                out.println("<p>Bienvenido, " + user + "!</p>");
-            } else {
-                out.println("<h1>Registro Inválido</h1>");
-                out.println("<p>Usuario o contraseña incorrectos.</p>");
-                out.println("<a href='login.jsp'>Volver a intentar</a>");
-            }
-            
-            out.println("</body>");
-            out.println("</html>");
+        
+        
+       
         }
     }
-}
+
 
