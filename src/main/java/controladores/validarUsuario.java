@@ -15,71 +15,54 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
+
 /**
  *
  * @author Personal
  */
+
 @WebServlet(name = "validarUsuario", urlPatterns = {"/validarUsuario"})
 public class validarUsuario extends HttpServlet {
-            
-    
-    
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)        
-        throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         
         String user = request.getParameter("txtusuario");
-        String password = request.getParameter("txtpassword");
-        HttpSession session = request.getSession();
+        String pass = request.getParameter("txtpassword");
         
-        Integer intentosF = (Integer) session.getAttribute("Intentos fallidos");
-        if (intentosF == null){
-            intentosF = 0;
-        }
         
         boolean esValido = false;
+        String mensaje = "";
         
-        if("Admin1".equals(user) && "1234".equals(password)||
-                ("Admin2".equals(user) && "1234".equals(password)) || 
-                    ("Admin3".equals(user) && "1234".equals(password))){
-        esValido = true;
-        session.setAttribute("Intentos fallidos", 0);
-        }else{
-        intentosF++;
-        session.setAttribute("Intentos fallidos", intentosF);
+        if("admin".equals(user) && "1234".equals(pass)) {
+            esValido = true;
         }
         
-                        
         
         response.setContentType("text/html;charset=UTF-8");
         
-        try(PrintWriter out = response.getWriter()){
-            
+        
+        try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Resultado de la validacion</title>");
+            out.println("<title>Resultado de la Validación</title>");
             out.println("</head>");
             out.println("<body>");
-            if(esValido){
-            out.println("<h1> Regitro exitoso </h1>");                    
-            out.println("<p> Bienvenido, " + user + "!</p>");     
-            out.println("<a href='login.jsp'>Back.</a>");
-            }else {
-            out.println("<h1>Registro inválido</h1>");           
-            out.println("<p> Usuario o contraseña incorrectos.</p>");
-            out.println("<a href='login.jsp'>Volver a intentar.</a> <br><br>");
-            out.println("<p>Llevas estos intentos: " + intentosF + "</p>");
-            if (intentosF >= 3){
             
-                out.println("<p style='color=red'> Has superado el número máximo de intentos.");
-              }
-            }                    
+            if(esValido) {
+                out.println("<h1>Registro Exitoso</h1>");
+                out.println("<p>Bienvenido, " + user + "!</p>");
+            } else {
+                out.println("<h1>Registro Inválido</h1>");
+                out.println("<p>Usuario o contraseña incorrectos.</p>");
+                out.println("<a href='login.jsp'>Volver a intentar</a>");
+            }
+            
             out.println("</body>");
             out.println("</html>");
-      }
-        
-  
-
-   }
+        }
+    }
 }
+
