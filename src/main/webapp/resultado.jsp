@@ -1,6 +1,6 @@
 <%-- 
     Document   : resultado
-    Created on : 11/04/2025, 11:07:42 a. m.
+    Created on : 11/04/2025, 11:07:42 a. m.
     Author     : Personal
 --%>
 
@@ -9,205 +9,214 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style>/* Estilos modernos para página de resultado - Login */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        <style>
+            /* Estilos modernos para página de resultado */
+            
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: #fff;
-    padding: 20px;
-}
+            body {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: #fff;
+                padding: 20px;
+            }
 
-.container {
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    max-width: 800px;
-    width: 90%;
-}
+            .result-container {
+                background-color: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(10px);
+                border-radius: 16px;
+                padding: 40px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                max-width: 500px;
+                width: 90%;
+                margin-bottom: 20px;
+            }
 
-.welcome-message {
-    margin-bottom: 30px;
-}
+            h1 {
+                font-size: 28px;
+                font-weight: 600;
+                margin-bottom: 20px;
+                color: #fff;
+            }
 
-h1 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #fff;
-}
+            p {
+                font-size: 18px;
+                margin-bottom: 16px;
+                line-height: 1.6;
+            }
 
-p {
-    font-size: 18px;
-    margin-bottom: 16px;
-    line-height: 1.6;
-}
+            .success-message {
+                background-color: rgba(72, 187, 120, 0.2);
+                border-left: 4px solid #48bb78;
+                padding: 15px;
+                border-radius: 8px;
+                margin: 20px 0;
+            }
 
-.success-message {
-    background-color: rgba(72, 187, 120, 0.2);
-    border-left: 4px solid #48bb78;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 20px 0;
-}
+            .error-message {
+                background-color: rgba(245, 101, 101, 0.2);
+                border-left: 4px solid #f56565;
+                padding: 15px;
+                border-radius: 8px;
+                margin: 20px 0;
+            }
 
-.error-message {
-    background-color: rgba(245, 101, 101, 0.2);
-    border-left: 4px solid #f56565;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 20px 0;
-}
+            a {
+                display: inline-block;
+                background-color: #fff;
+                color: #764ba2;
+                text-decoration: none;
+                padding: 12px 24px;
+                border-radius: 50px;
+                font-weight: 500;
+                margin-top: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
 
-a {
-    display: inline-block;
-    background-color: #fff;
-    color: #764ba2;
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 50px;
-    font-weight: 500;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+            a:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+                background-color: #f8f9fa;
+            }
 
-a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    background-color: #f8f9fa;
-}
+            .icon {
+                font-size: 64px;
+                margin-bottom: 20px;
+            }
 
-.options-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-}
+            .success-icon {
+                color: #48bb78;
+            }
 
-.option-card {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    overflow: hidden;
-    width: 100%;
-    max-width: 320px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    cursor: pointer;
-}
+            .error-icon {
+                color: #f56565;
+            }
 
-.option-card:hover {
-    transform: translateY(-5px);
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
+            .welcome-message {
+                margin-bottom: 30px;
+            }
 
-.option-icon {
-    margin-right: 15px;
-}
+            .options-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                width: 90%;
+                max-width: 900px;
+            }
 
-.option-icon input[type="submit"] {
-    background: none;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.2);
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-}
+            .option-card {
+                display: flex;
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                padding: 20px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
 
-.option-icon input[type="submit"]:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-}
+            .option-card:hover {
+                transform: translateY(-5px);
+                background-color: rgba(255, 255, 255, 0.2);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
 
-.option-content {
-    text-align: left;
-    flex: 1;
-}
+            .option-icon {
+                font-size: 24px;
+                margin-right: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
-.option-title {
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 5px;
-}
+            .option-icon input[type="submit"] {
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+            }
 
-.option-description {
-    font-size: 14px;
-    opacity: 0.8;
-}
+            .option-content {
+                flex: 1;
+            }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 30px;
-    }
-    
-    h1 {
-        font-size: 24px;
-    }
-    
-    p {
-        font-size: 16px;
-    }
+            .option-title {
+                font-weight: 600;
+                margin-bottom: 5px;
+                font-size: 18px;
+            }
 
-    .options-container {
-        flex-direction: column;
-        align-items: center;
-    }
+            .option-description {
+                font-size: 14px;
+                opacity: 0.8;
+            }
 
-    .option-card {
-        max-width: 100%;
-        width: 100%;
-    }
-}</style>
+            @media (max-width: 768px) {
+                .result-container {
+                    padding: 30px;
+                }
+                
+                h1 {
+                    font-size: 24px;
+                }
+                
+                p {
+                    font-size: 16px;
+                }
+                
+                .options-container {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
         <title>Resultado validación</title>
     </head>
     <body>
-        <div class="container">
-            <div class="welcome-message">
-                <h1>${mensaje}</h1>   
-                <% 
-                Boolean valido = (Boolean)request.getAttribute("esValido");
-                if(valido != null && valido) { 
-                %>
-                    <p>Bienvenido, ${usuario}!</p>
-                    <p>Has iniciado sesión correctamente.</p>
+        <% 
+        Boolean valido = (Boolean)request.getAttribute("esValido");
+        Boolean esRegistro = (Boolean)request.getAttribute("esRegistro");
+        %>
+        
+        <div class="result-container">
+            <div class="<%= (valido != null && valido) ? "success-message" : "error-message" %>">
+                <h1>${mensaje}</h1>
+                
+                <% if(esRegistro != null && esRegistro) { %>
+                    <% if(valido != null && valido) { %>
+                        <p>¡Registro completado correctamente!</p>
+                        <a href="login.jsp">Ir a iniciar sesión</a>
+                    <% } else { %>
+                        <p>Hubo un problema con el registro.</p>
+                        <a href="registro.jsp">Volver a intentar</a>
+                    <% } %>
                 <% } else { %>
-                    <p>Usuario o contraseña incorrectos.</p>
-                    <a href="login.jsp">Volver a intentar</a>
+                    <% if(valido != null && valido) { %>
+                        <p>Bienvenido, ${usuario}!</p>
+                        <p>Has iniciado sesión correctamente.</p>
+                        <p>Selecciona una de las siguientes opciones para comenzar:</p>
+                    <% } else { %>
+                        <p>Usuario o contraseña incorrectos.</p>
+                        <a href="registro.jsp">Volver a intentar</a>
+                    <% } %>
                 <% } %>
-                <p>Selecciona una de las siguientes opciones para comenzar:</p>
             </div>
-            
+        </div>
+        
+        <% if(valido != null && valido && (esRegistro == null || !esRegistro)) { %>
+        <form action="opciones" method="post">
             <div class="options-container">
                 <div class="option-card">
-                    <div class="option-icon">
-                        <input type="submit" value="📊" name="btn-dashboard" />
-                    </div>
+                    <div class="option-icon"><input type="submit" value="" name="btn-dashboard" /></div>
                     <div class="option-content">
                         <div class="option-title">Dashboard Principal</div>
                         <div class="option-description">Accede a tu panel de control con estadísticas, notificaciones y actividades recientes.</div>
@@ -215,9 +224,7 @@ a:hover {
                 </div>
                 
                 <div class="option-card">
-                    <div class="option-icon">
-                        <input type="submit" value="👤" name="btn-perfilUser" />
-                    </div>
+                    <div class="option-icon"><input type="submit" value="" name="btn-perfilUser" /></div>
                     <div class="option-content">
                         <div class="option-title">Mi Perfil</div>
                         <div class="option-description">Edita tu información personal, preferencias y configuración de seguridad.</div>
@@ -225,15 +232,14 @@ a:hover {
                 </div>
                 
                 <div class="option-card">
-                    <div class="option-icon">
-                        <input type="submit" value="🚪" name="btn-cerrarSesion" />
-                    </div>
+                    <div class="option-icon"><input type="submit" value="" name="btn-cerrarSesion" /></div>
                     <div class="option-content">
                         <div class="option-title">Cerrar Sesión</div>
                         <div class="option-description">Finaliza tu sesión actual de manera segura.</div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+        <% } %>
     </body>
 </html>
