@@ -1,6 +1,6 @@
 <%-- 
     Document   : registro
-    Created on : 21/04/2025, 10:08:54 a. m.
+    Created on : 21/04/2025, 10:08:54 a. m.
     Author     : Personal
 --%>
 
@@ -10,9 +10,168 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro</title>
+        <style>
+            /* Estilos modernos para página de registro */
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            body {
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: #fff;
+                padding: 20px;
+            }
+
+            .container {
+                background-color: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(10px);
+                border-radius: 16px;
+                padding: 40px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+                max-width: 500px;
+                width: 90%;
+            }
+
+            .form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #heading {
+                font-size: 28px;
+                font-weight: 600;
+                margin-bottom: 30px;
+                text-align: center;
+                color: #fff;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+                position: relative;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 500;
+                font-size: 16px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"] {
+                width: 100%;
+                padding: 12px 15px;
+                border: none;
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                color: #fff;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                outline: none;
+            }
+
+            input[type="text"]:focus,
+            input[type="email"]:focus,
+            input[type="password"]:focus {
+                background-color: rgba(255, 255, 255, 0.3);
+                box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+            }
+
+            input::placeholder {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            .error {
+                color: #ffb4b4;
+                font-size: 14px;
+                margin-top: 5px;
+                display: none;
+            }
+
+            .register-btn {
+                background-color: #fff;
+                color: #764ba2;
+                border: none;
+                padding: 14px 20px;
+                border-radius: 50px;
+                font-weight: 600;
+                font-size: 16px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-top: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            .register-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+                background-color: #f8f9fa;
+            }
+
+            .login-link {
+                margin-top: 30px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .login-link p {
+                margin-bottom: 10px;
+                font-size: 15px;
+            }
+
+            .login-btn {
+                background: transparent;
+                color: #fff;
+                border: 2px solid rgba(255, 255, 255, 0.5);
+                padding: 10px 20px;
+                border-radius: 50px;
+                font-weight: 500;
+                font-size: 15px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                width: fit-content;
+            }
+
+            .login-btn:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                transform: translateY(-2px);
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    padding: 30px 20px;
+                }
+                
+                #heading {
+                    font-size: 24px;
+                }
+                
+                input[type="text"],
+                input[type="email"],
+                input[type="password"] {
+                    padding: 10px 12px;
+                }
+                
+                .register-btn, .login-btn {
+                    padding: 12px 18px;
+                }
+            }
+        </style>
     </head>
     <body>
-             <div class="container">
+        <div class="container">
             <form class="form" action="validarUsuario" method="post">
                 <!-- Campo oculto para indicar la acción de registro -->
                 <input type="hidden" name="accion" value="registro">
