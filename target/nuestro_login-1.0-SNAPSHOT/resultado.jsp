@@ -120,8 +120,10 @@ a:hover {
     <body>
         
         <h1>${mensaje}</h1>
-    
-    <% 
+     <div class="container">
+        <div class="welcome-message">
+        <h1>${mensaje}</h1>   
+        <% 
         Boolean valido = (Boolean)request.getAttribute("esValido");
         if(valido != null && valido) { 
     %>
@@ -131,6 +133,38 @@ a:hover {
         <p>Usuario o contraseña incorrectos.</p>
         <a href="login.jsp">Volver a intentar</a>
     <% } %>
+            <p>Selecciona una de las siguientes opciones para comenzar:</p>
+        </div>
+         <div class="options-container">
+                
+            
+            <div class="option-card">
+                <div class="option-icon"><input type="submit" value="📊" name="btn-dashboard" /></div>
+                <div class="option-content">
+                    <div class="option-title">Dashboard Principal</div>
+                    <div class="option-description">Accede a tu panel de control con estadísticas, notificaciones y actividades recientes.</div>
+                </div>
+            </div>
+            
+            
+            <div class="option-card">
+                <div class="option-icon"><input type="submit" value="👤" name="btn-perfilUser"</div>
+                <div class="option-content">
+                    <div class="option-title">Mi Perfil</div>
+                    <div class="option-description">Edita tu información personal, preferencias y configuración de seguridad.</div>
+                </div>
+            </div>
+            
+            
+            <div class="option-card">
+                <div class="option-icon"><input type="submit" value="🚪" name="btn-cerrarSesion"</div>
+                <div class="option-content">
+                    <div class="option-title">Cerrar Sesión</div>
+                    <div class="option-description">Finaliza tu sesión actual de manera segura.</div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     
 
