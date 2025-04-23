@@ -29,7 +29,7 @@
             }
             
             .container {
-                background-color: rgba(255, 255, 255, 0.1);
+                background-color: rgba(23, 23, 23, 0.9);
                 backdrop-filter: blur(10px);
                 border-radius: 15px;
                 padding: 40px;
@@ -150,7 +150,7 @@
                     // Redirigir a la página de login después de 2 segundos
                     setTimeout(function() {
                         location.href = 'login.jsp';
-                    }, 2000);
+                    }, 1000);
                 }
             }
         </script>

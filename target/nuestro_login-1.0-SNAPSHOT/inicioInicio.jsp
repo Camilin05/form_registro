@@ -10,7 +10,90 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Inicio exitoso</title>
-        
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                min-height: 100vh;
+                background: linear-gradient(135deg, #4b6cb7, #182848);
+                padding: 20px;
+            }
+            
+            .container {
+                background-color: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                padding: 40px;
+                width: 90%;
+                max-width: 800px;
+                text-align: center;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            }
+            
+            h1 {
+                color: white;
+                margin-bottom: 30px;
+                font-size: 2.5em;
+            }
+            
+            .main-options {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                margin-bottom: 40px;
+            }
+            
+            .user-info {
+                color: white;
+                margin-bottom: 30px;
+                font-size: 1.2em;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                background-color: rgba(255, 255, 255, 0.2);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                min-width: 180px;
+                font-weight: 500;
+            }
+            
+            .btn:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .logout-btn {
+                background-color: rgba(220, 53, 69, 0.5);
+                margin-top: 30px;
+            }
+            
+            .logout-btn:hover {
+                background-color: rgba(220, 53, 69, 0.7);
+            }
+            
+            @media (max-width: 768px) {
+                .main-options {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+            }
+        </style>
     </head>
     <body>
         <div class="container">
