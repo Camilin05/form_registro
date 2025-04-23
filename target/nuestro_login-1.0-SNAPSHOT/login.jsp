@@ -39,8 +39,8 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 100%;
-                max-width: 420px;
+                width: 150%;
+                max-width: 620px;
                 padding: 20px;
             }
             
@@ -102,13 +102,14 @@
             }
             
             .form .btn {
+                
                 display: flex;
-                justify-content: space-between;
+                align-content: center;
                 margin-top: 2em;
             }
             
             .button1, .button2 {
-                padding: 0.8em 1.5em;
+                padding: 0.9em 1.5em;
                 border-radius: 8px;
                 border: none;
                 outline: none;
@@ -118,7 +119,7 @@
                 font-weight: 600;
                 cursor: pointer;
                 width: 48%;
-                margin-left:80px;
+                margin-left:123px;
             }
             
             .button1:hover, .button2:hover {
@@ -150,7 +151,7 @@
                     padding: 1.5em;
                 }
                 
-                .btn {
+                .btn { 
                     flex-direction: column;
                     gap: 10px;
                 }

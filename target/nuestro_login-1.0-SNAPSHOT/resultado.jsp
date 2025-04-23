@@ -156,10 +156,12 @@
             <h1>Bienvenido a nuestro proyecto</h1>
 
             <div class="main-options">
-                <button class="btn" onclick="location.href='inicioInicio.jsp'">Inicio</button>            
-                <button class="btn" onclick="location.href='more_folders/contacto.jsp'">Contacto</button>
-                <button class="btn" onclick="location.href='more_folders/ayuda.jsp'">Acerca de nosotros</button>
+                <button class="btn" onclick="location.href='inicioInicio.jsp'">Entrar</button>            
+            <button class="btn" onclick="location.href='home.jsp'">Volver al inicio</button>     
             </div>
+            <div class="main-options">
+            
+        </div>
         </div>
         <% } %>
     </body>

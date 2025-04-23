@@ -107,6 +107,7 @@
                 <button class="btn" onclick="location.href='more_folders/productos.jsp'">Productos</button>
                 <button class="btn" onclick="location.href='more_folders/contacto.jsp'">Contacto</button>
                 <button class="btn" onclick="location.href='more_folders/ayuda.jsp'">Acerca de nosotros</button>
+                <button class="btn" onclick="location.href='sesiones.jsp'">Acerca sobre inicios de sesión</button>
             </div>
 
             <button class="btn logout-btn" onclick="logout()">Cerrar sesión</button>

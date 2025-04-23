@@ -117,6 +117,7 @@
                 <button class="btn" onclick="checkAccess('more_folders/productos.jsp')">Productos</button>
                 <button class="btn" onclick="checkAccess('more_folders/contacto.jsp')">Contacto</button>
                 <button class="btn" onclick="checkAccess('more_folders/ayuda.jsp')">Acerca de nosotros</button>
+                <button class="btn" onclick="checkAccess('sesiones.jsp')">Acerca sobre inicios de sesión</button>
             </div>
 
             <div class="auth-container">
