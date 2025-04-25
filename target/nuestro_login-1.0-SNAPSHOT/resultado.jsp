@@ -132,6 +132,9 @@
                             sessionStorage.setItem('userLoggedIn', 'true');
                             sessionStorage.setItem('username', '${usuario}');
                             
+                            // Establecer el tiempo de inicio de sesión
+                            sessionStorage.setItem('sessionStartTime', Date.now());
+                            
                             // Verificar si hay una redirección pendiente
                             var redirectUrl = sessionStorage.getItem('redirectAfterLogin');
                             if (redirectUrl && redirectUrl !== 'null' && redirectUrl !== '') {

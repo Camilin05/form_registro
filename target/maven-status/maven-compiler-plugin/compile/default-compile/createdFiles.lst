@@ -1,5 +1,3 @@
-controladores\registro2.class
-controladores\procesarRegistros.class
 controladores\validarUsuario.class
 com\mycompany\nuestro_login\JakartaRestConfiguration.class
 com\mycompany\nuestro_login\resources\JakartaEE10Resource.class

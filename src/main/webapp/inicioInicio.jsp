@@ -55,8 +55,28 @@
             
             .user-info {
                 color: white;
-                margin-bottom: 30px;
+                margin-bottom: 15px;
                 font-size: 1.2em;
+            }
+            
+            .session-info {
+                color: white;
+                margin-bottom: 30px;
+                font-size: 1em;
+                background-color: rgba(0, 0, 0, 0.2);
+                padding: 15px;
+                border-radius: 10px;
+            }
+            
+            .timer {
+                font-weight: bold;
+                color: #61dafb;
+            }
+            
+            .timeout-warning {
+                color: #ff8a8a;
+                font-size: 0.9em;
+                margin-top: 5px;
             }
             
             .btn {
@@ -102,18 +122,33 @@
             <div class="user-info" id="userWelcome">
                 <!-- El nombre de usuario se insertará aquí con JavaScript -->
             </div>
+            
+            <div class="session-info">
+                <p>Tiempo de sesión activa: <span class="timer" id="sessionTimer">0 segundos</span></p>
+                <p class="timeout-warning" id="timeoutWarning" style="display: none;">
+                    La sesión se cerrará automáticamente después de <span id="timeoutCounter">60</span> segundos de inactividad
+                </p>
+            </div>
 
             <div class="main-options">
-                <button class="btn" onclick="location.href='more_folders/productos.jsp'">Productos</button>
-                <button class="btn" onclick="location.href='more_folders/contacto.jsp'">Contacto</button>
-                <button class="btn" onclick="location.href='more_folders/ayuda.jsp'">Acerca de nosotros</button>
-                <button class="btn" onclick="location.href='sesiones.jsp'">Acerca sobre inicios de sesión</button>
+                <button class="btn" onclick="location.href='more_folders/productos.jsp'; resetInactivityTimer();">Productos</button>
+                <button class="btn" onclick="location.href='more_folders/contacto.jsp'; resetInactivityTimer();">Contacto</button>
+                <button class="btn" onclick="location.href='more_folders/ayuda.jsp'; resetInactivityTimer();">Acerca de nosotros</button>
+                <button class="btn" onclick="location.href='sesiones.jsp'; resetInactivityTimer();">Acerca sobre inicios de sesión</button>
             </div>
 
             <button class="btn logout-btn" onclick="logout()">Cerrar sesión</button>
         </div>
         
         <script>
+            // Variables para el control de la sesión
+            let sessionStartTime;
+            let sessionTimer;
+            let inactivityTimer;
+            let countdownTimer;
+            const INACTIVITY_TIMEOUT = 60000; // 60 segundos de inactividad antes de cerrar sesión
+            let remainingTime = INACTIVITY_TIMEOUT / 1000;
+            
             // Verificar si el usuario ha iniciado sesión
             window.onload = function() {
                 var isLoggedIn = sessionStorage.getItem('userLoggedIn');
@@ -126,21 +161,98 @@
                 } else {
                     // Mostrar mensaje de bienvenida
                     document.getElementById('userWelcome').textContent = '¡Bienvenido, ' + username + '!';
+                    
+                    // Iniciar el contador de tiempo de sesión
+                    startSessionTimer();
+                    
+                    // Iniciar el timer de inactividad
+                    resetInactivityTimer();
                 }
             };
             
+            // Función para iniciar el contador de tiempo de sesión
+            function startSessionTimer() {
+                // Obtener la hora de inicio de sesión o establecerla si no existe
+                sessionStartTime = sessionStorage.getItem('sessionStartTime');
+                if (!sessionStartTime) {
+                    sessionStartTime = Date.now();
+                    sessionStorage.setItem('sessionStartTime', sessionStartTime);
+                }
+                
+                // Actualizar el contador cada segundo
+                sessionTimer = setInterval(function() {
+                    const currentTime = Date.now();
+                    const elapsedTimeInSeconds = Math.floor((currentTime - sessionStartTime) / 1000);
+                    
+                    let displayText = elapsedTimeInSeconds + " segundos";
+                    if (elapsedTimeInSeconds >= 60) {
+                        const minutes = Math.floor(elapsedTimeInSeconds / 60);
+                        const seconds = elapsedTimeInSeconds % 60;
+                        displayText = minutes + " minuto" + (minutes !== 1 ? "s" : "") + 
+                                    " y " + seconds + " segundo" + (seconds !== 1 ? "s" : "");
+                    }
+                    
+                    document.getElementById('sessionTimer').textContent = displayText;
+                }, 1000);
+            }
+            
+            // Función para reiniciar el timer de inactividad
+            function resetInactivityTimer() {
+                // Limpiar timers existentes
+                clearTimeout(inactivityTimer);
+                clearInterval(countdownTimer);
+                
+                // Ocultar advertencia y reiniciar contador
+                document.getElementById('timeoutWarning').style.display = 'none';
+                remainingTime = INACTIVITY_TIMEOUT / 1000;
+                
+                // Configurar nuevo timer de inactividad
+                inactivityTimer = setTimeout(function() {
+                    // Mostrar advertencia de timeout
+                    document.getElementById('timeoutWarning').style.display = 'block';
+                    
+                    // Iniciar cuenta regresiva
+                    countdownTimer = setInterval(function() {
+                        remainingTime--;
+                        document.getElementById('timeoutCounter').textContent = remainingTime;
+                        
+                        if (remainingTime <= 0) {
+                            // Cerrar sesión por inactividad
+                            clearInterval(countdownTimer);
+                            logout('La sesión ha sido cerrada por inactividad');
+                        }
+                    }, 1000);
+                }, INACTIVITY_TIMEOUT);
+            }
+            
+            // Escuchar eventos de actividad del usuario
+            document.addEventListener('mousemove', resetInactivityTimer);
+            document.addEventListener('keypress', resetInactivityTimer);
+            document.addEventListener('click', resetInactivityTimer);
+            document.addEventListener('scroll', resetInactivityTimer);
+            
             // Función para cerrar sesión
-            function logout() {
+            function logout(message) {
+                // Limpiar timers
+                clearInterval(sessionTimer);
+                clearTimeout(inactivityTimer);
+                clearInterval(countdownTimer);
+                
                 // Eliminar las variables de sesión
                 sessionStorage.removeItem('userLoggedIn');
                 sessionStorage.removeItem('username');
                 sessionStorage.removeItem('redirectAfterLogin');
+                sessionStorage.removeItem('sessionStartTime');
+                
+                // Informar al usuario si hay mensaje
+                if (message) {
+                    alert(message);
+                } else {
+                    alert('Has cerrado sesión correctamente');
+                }
                 
                 // Redirigir a la página de inicio
                 window.location.href = 'home.jsp';
-                
-                // Informar al usuario
-                alert('Has cerrado sesión correctamente');
             }
         </script>
     </body>
